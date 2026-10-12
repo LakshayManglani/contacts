@@ -22,7 +22,7 @@ export default defineConfig([
   },
   // Allow shadcn UI components to export utilities alongside components
   {
-    files: ['src/components/ui/**/*.{ts,tsx}'],
+    files: ['src/components/**/*.{ts,tsx}'],
     rules: {
       'react-refresh/only-export-components': 'off',
     },

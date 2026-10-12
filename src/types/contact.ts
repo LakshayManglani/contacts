@@ -2,6 +2,10 @@ export const STAGES = ['Lead', 'Prospect', 'Qualified', 'Customer'] as const;
 
 export type Stage = (typeof STAGES)[number];
 
+export const VIEWS = ['table', 'board'] as const;
+
+export type View = (typeof VIEWS)[number];
+
 export interface Contact {
   id: string;
   name: string;
