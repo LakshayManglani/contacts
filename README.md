@@ -2,6 +2,10 @@
 
 A lightweight contact management interface built with React, TypeScript, and Shadcn/ui.
 
+## Notes
+
+For design decisions, architectural choices, trade-offs, and possible future improvements, see [NOTES.md](/NOTES.md)
+
 ## Features
 
 - Table and Board View
