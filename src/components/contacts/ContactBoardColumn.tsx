@@ -28,17 +28,21 @@ export default function ContactBoardColumn({ stage, contacts }: ContactBoardColu
       <div className="flex flex-1 flex-col gap-2 p-3">
         {contacts.length > 0 ? (
           contacts.map((contact) => (
-            <article
+            <button
               key={contact.id}
-              className="rounded-md border bg-background p-3"
               onClick={() => openDetailsPanel(contact.id)}
+              className="rounded-md border bg-background p-3"
             >
-              <p className="text-sm font-medium line-clamp-1">{contact.name}</p>
+              <article>
+                <p className="text-sm font-medium line-clamp-1">{contact.name}</p>
 
-              {contact.company && (
-                <p className="mt-1 text-xs text-muted-foreground line-clamp-1">{contact.company}</p>
-              )}
-            </article>
+                {contact.company && (
+                  <p className="mt-1 text-xs text-muted-foreground line-clamp-1">
+                    {contact.company}
+                  </p>
+                )}
+              </article>
+            </button>
           ))
         ) : (
           <div className="flex flex-1 items-center justify-center rounded-md border border-dashed p-4">

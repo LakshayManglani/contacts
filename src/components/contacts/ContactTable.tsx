@@ -31,7 +31,9 @@ export default function ContactTable() {
           <TableBody>
             {contacts.map((contact) => (
               <TableRow key={contact.id} onClick={() => openDetailsPanel(contact.id)}>
-                <TableCell className="font-medium">{contact.name}</TableCell>
+                <TableCell className="font-medium">
+                  <button>{contact.name}</button>
+                </TableCell>
                 <TableCell>{contact.company}</TableCell>
                 <TableCell>{contact.role}</TableCell>
                 <TableCell>{contact.owner}</TableCell>
