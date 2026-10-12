@@ -25,7 +25,7 @@ export function ContactDetailsSheet() {
       <SheetContent side="right">
         {selectedContact ? (
           <>
-            <SheetHeader>
+            <SheetHeader className="border-b border-border">
               <SheetTitle className="truncate">{selectedContact.name}</SheetTitle>
               <SheetDescription className="truncate">
                 {selectedContact.company} | {selectedContact.role}

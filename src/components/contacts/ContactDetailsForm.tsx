@@ -11,11 +11,26 @@ import { useContact } from './ContactProvider';
 import { STAGES, type Contact, type Stage } from '@/types/contact';
 import { Textarea } from '../ui/textarea';
 import { SheetFooter } from '../ui/sheet';
-import { useState } from 'react';
+import { useState, type PropsWithChildren } from 'react';
 import { Button } from '../ui/button';
+import { Separator } from '../ui/separator.tsx';
+import { Badge } from '../ui/badge.tsx';
 
 interface ContactDetailsFormProps {
   contact: Contact;
+}
+
+function DetailRow({ label, children }: { label: string } & PropsWithChildren) {
+  return (
+    <div className="grid grid-cols-[6.5rem_1fr] items-start gap-3">
+      <dt className="text-xs font-medium tracking-wide text-muted-foreground uppercase">{label}</dt>
+      <dd className="min-w-0 text-sm text-foreground">{children}</dd>
+    </div>
+  );
+}
+
+function MissingText({ children }: PropsWithChildren) {
+  return <span className="text-sm text-muted-foreground/70 italic">{children}</span>;
 }
 
 export default function ContactDetailsForm({ contact }: ContactDetailsFormProps) {
@@ -47,58 +62,96 @@ export default function ContactDetailsForm({ contact }: ContactDetailsFormProps)
           if (!isDirty) return;
           updateContact(contact.id, { stage, notes: normalizedNotes });
         }}
+        className="flex flex-1 flex-col min-h-0"
       >
-        <div>Email: {contact.email}</div>
-        <div>Company: {contact.company}</div>
-        <div>Role: {contact.role}</div>
-        <div>Owner: {contact.owner}</div>
-        <div>Labels: {contact.labels}</div>
+        <div className="px-4 flex-1 overflow-y-auto gap-4 flex flex-col pb-4">
+          <DetailRow label="Email">
+            {contact.email ? (
+              <a
+                href={`mailto:${contact.email}`}
+                className="text-blue-500 hover:underline hover:underline-offset-2"
+              >
+                {contact.email}
+              </a>
+            ) : (
+              <MissingText>No email</MissingText>
+            )}
+          </DetailRow>
 
-        <Field>
-          <FieldLabel htmlFor="stage">Stage</FieldLabel>
-          <Select
-            items={stageItems}
-            value={stage}
-            onValueChange={(value) => {
-              setStage(value ?? undefined);
-            }}
-          >
-            <SelectTrigger id="stage">
-              <SelectValue placeholder="Select a stage" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                {stageItems.map((item) => (
-                  <SelectItem key={item.value} value={item.value}>
-                    {item.label}
-                  </SelectItem>
-                ))}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-        </Field>
+          <DetailRow label="Company">{contact.company}</DetailRow>
 
-        <Field>
-          <FieldLabel htmlFor="notes">Notes</FieldLabel>
-          <Textarea
-            id="notes"
-            value={notes}
-            rows={6}
-            placeholder="No notes yet. Add context about this contact."
-            onChange={(event) => setNotes(event.target.value)}
-          />
-        </Field>
+          <DetailRow label="Role">{contact.role}</DetailRow>
 
-        <SheetFooter>
+          <DetailRow label="Owner">
+            {contact.owner ?? <MissingText>No owner</MissingText>}
+          </DetailRow>
+
+          <DetailRow label="Labels">
+            {contact.labels.length > 0 ? (
+              <div className="flex flex-wrap items-center gap-1">
+                {contact.labels.map((label) => {
+                  return (
+                    <Badge key={label} variant="secondary" className="rounded-full">
+                      {label}
+                    </Badge>
+                  );
+                })}
+              </div>
+            ) : (
+              <MissingText>No labels</MissingText>
+            )}
+          </DetailRow>
+
+          <Separator className="my-3" />
+
+          <Field>
+            <FieldLabel htmlFor="stage">Stage</FieldLabel>
+            <Select
+              items={stageItems}
+              value={stage}
+              onValueChange={(value) => {
+                setStage(value ?? undefined);
+              }}
+            >
+              <SelectTrigger id="stage">
+                <SelectValue placeholder="Select a stage" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  {stageItems.map((item) => (
+                    <SelectItem key={item.value} value={item.value}>
+                      {item.label}
+                    </SelectItem>
+                  ))}
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </Field>
+
+          <Field className="flex-1">
+            <FieldLabel htmlFor="notes">Notes</FieldLabel>
+            <Textarea
+              id="notes"
+              value={notes}
+              rows={2}
+              placeholder="No notes yet. Add context about this contact."
+              onChange={(event) => setNotes(event.target.value)}
+            />
+          </Field>
+        </div>
+
+        <SheetFooter className="border-t border-border">
           {isDirty ? (
             <span className="mr-auto text-xs text-muted-foreground">Unsaved changes</span>
           ) : null}
-          <Button type="button" variant="outline" onClick={resetState} disabled={!isDirty}>
-            Cancel
-          </Button>
-          <Button type="submit" disabled={!isDirty}>
-            Save changes
-          </Button>
+          <div className="flex gap-2 justify-end">
+            <Button type="button" variant="outline" onClick={resetState} disabled={!isDirty}>
+              Cancel
+            </Button>
+            <Button type="submit" disabled={!isDirty}>
+              Save changes
+            </Button>
+          </div>
         </SheetFooter>
       </form>
     )
