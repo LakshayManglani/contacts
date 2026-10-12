@@ -1,10 +1,11 @@
-import { Button } from '@/components/ui/button';
+import ContactTable from '@/components/contacts/ContactTable';
+import AppContainer from '@/components/app/AppContainer';
 
 function App() {
   return (
-    <div className="flex min-h-svh flex-col items-center justify-center">
-      <Button>Click me</Button>
-    </div>
+    <AppContainer className="flex items-center justify-center h-dvh">
+      <ContactTable />
+    </AppContainer>
   );
 }
 
