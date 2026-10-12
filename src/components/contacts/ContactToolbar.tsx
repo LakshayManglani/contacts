@@ -8,7 +8,7 @@ export default function ContactToolbar() {
 
   return (
     <div className="border-b border-border">
-      <AppContainer className="flex py-4 justify-between">
+      <AppContainer className="flex py-4 justify-between items-center">
         <span>Contacts</span>
 
         <ToggleGroup
@@ -19,10 +19,11 @@ export default function ContactToolbar() {
           }}
           value={[view]}
           variant="outline"
+          className="gap-0 border border-border"
         >
           {VIEWS.map((view) => {
             return (
-              <ToggleGroupItem key={view} value={view}>
+              <ToggleGroupItem key={view} value={view} className="border-0 rounded-none">
                 {view.charAt(0).toUpperCase() + view.slice(1)}
               </ToggleGroupItem>
             );

@@ -1,5 +1,6 @@
 import type { Contact } from '@/types/contact';
 import { useContact } from './ContactProvider';
+import { Badge } from '../ui/badge';
 
 interface ContactBoardColumnProps {
   stage?: string;
@@ -13,14 +14,15 @@ export default function ContactBoardColumn({ stage, contacts }: ContactBoardColu
     <section
       key={stage}
       aria-labelledby={`stage-${stage}`}
-      className="min-h-48 w-3xs shrink-0 flex flex-col rounded-lg border border-border bg-muted/30"
+      className="min-h-96 w-3xs shrink-0 h-min flex flex-col rounded-lg border border-border bg-muted/30"
     >
       <div className="flex items-center justify-between border-b px-4 py-3">
         <h2 id={`stage-${stage}`} className="text-sm font-semibold">
           {stage}
         </h2>
 
-        <span className="text-xs text-muted-foreground">{contacts.length}</span>
+        {/* <span className="text-xs text-muted-foreground">{contacts.length}</span> */}
+        <Badge>{contacts.length}</Badge>
       </div>
 
       <div className="flex flex-1 flex-col gap-2 p-3">
