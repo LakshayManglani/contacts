@@ -32,7 +32,7 @@ export function ContactDetailsSheet() {
               </SheetDescription>
             </SheetHeader>
 
-            <ContactDetailsForm />
+            <ContactDetailsForm contact={selectedContact} />
           </>
         ) : null}
       </SheetContent>

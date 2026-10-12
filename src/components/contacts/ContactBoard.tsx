@@ -1,9 +1,11 @@
 import { STAGES, type Contact, type Stage } from '@/types/contact';
-import { contacts } from '@/data/contacts';
 import ContactBoardColumn from '@/components/contacts/ContactBoardColumn';
 import AppContainer from '@/components/app/AppContainer';
+import { useContact } from './ContactProvider';
 
 export default function ContactBoard() {
+  const { contacts } = useContact();
+
   const groups = STAGES.reduce<Record<Stage, Contact[]>>(
     (acc, stage) => {
       acc[stage] = [];

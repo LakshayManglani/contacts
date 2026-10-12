@@ -6,11 +6,10 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { contacts } from '@/data/contacts';
 import { useContact } from './ContactProvider';
 
 export default function ContactTable() {
-  const { openDetailsPanel } = useContact();
+  const { contacts, openDetailsPanel } = useContact();
 
   return (
     <div className="rounded-lg border border-border bg-card shadow-xl">
