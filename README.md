@@ -1,76 +1,87 @@
-# React + TypeScript + Vite
+# Contacts
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A lightweight contact management interface built with React, TypeScript, and Shadcn/ui.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Table and Board View
+- Shared state between Table and Board views
+- Contact details panel for viewing individual contact information
+- Edit contact details
+  - Stage
+  - Notes
+- Read-only contact information for fields that are not intended to be edited
+- Save and Cancel actions for editing contact details
+- Missing information handling for incomplete contact records
+- Empty board states for stages without contacts
+- Keyboard accessibility with sensible focus behavior
 
-## React Compiler
+## Prerequisites
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+Node.js >=22.0.0
+pnpm >=10.0.0
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
+## Installation
 
-## Expanding the ESLint configuration
+### 💻 Running Locally
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. **Clone the repository**:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+   ```bash
+   git clone https://github.com/LakshayManglani/contacts.git
+   cd contacts
+   ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+2. **Install dependencies**:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
-```
+   ```bash
+   pnpm install
+   ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+3. **Start the development server**:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x';
-import reactDom from 'eslint-plugin-react-dom';
+   ```bash
+   pnpm dev
+   ```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
-```
+## How to Contribute
+
+We welcome contributions from the community. Please follow these steps to contribute:
+
+1. **Fork the repository**
+2. **Create a new branch**:
+
+   ```bash
+   git checkout -b feat/feature-branch-name
+   ```
+
+3. **Make your changes and commit them**:
+
+   ```bash
+   git commit -m "feat(scope): description of changes"
+   ```
+
+4. **Push to the branch**:
+
+   ```bash
+   git push origin feat/feature-branch-name
+   ```
+
+5. **Create a pull request** detailing your changes.
+
+For more details on the commit format and other guidelines, please refer to the [Contributor Guidelines](./CONTRIBUTING.md).
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+For any inquiries or issues, please open an issue on GitHub or reach out to us using the following email addresses:
+
+[@LakshayManglani](https://github.com/LakshayManglani):
+**[lakshaymanglani2212@gmail.com](mailto:lakshaymanglani2212@gmail.com)**
+
+---
+
+Thank you for using our Contact DEMO! We hope it streamlines your service management.
