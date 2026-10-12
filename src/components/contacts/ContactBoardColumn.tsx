@@ -1,4 +1,5 @@
 import type { Contact } from '@/types/contact';
+import { useContact } from './ContactProvider';
 
 interface ContactBoardColumnProps {
   stage?: string;
@@ -6,6 +7,8 @@ interface ContactBoardColumnProps {
 }
 
 export default function ContactBoardColumn({ stage, contacts }: ContactBoardColumnProps) {
+  const { openDetailsPanel } = useContact();
+
   return (
     <section
       key={stage}
@@ -23,7 +26,11 @@ export default function ContactBoardColumn({ stage, contacts }: ContactBoardColu
       <div className="flex flex-1 flex-col gap-2 p-3">
         {contacts.length > 0 ? (
           contacts.map((contact) => (
-            <article key={contact.id} className="rounded-md border bg-background p-3">
+            <article
+              key={contact.id}
+              className="rounded-md border bg-background p-3"
+              onClick={() => openDetailsPanel(contact.id)}
+            >
               <p className="text-sm font-medium line-clamp-1">{contact.name}</p>
 
               {contact.company && (

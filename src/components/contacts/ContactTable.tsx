@@ -7,8 +7,11 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { contacts } from '@/data/contacts';
+import { useContact } from './ContactProvider';
 
 export default function ContactTable() {
+  const { openDetailsPanel } = useContact();
+
   return (
     <div className="rounded-lg border border-border bg-card shadow-xl">
       <Table>
@@ -25,7 +28,7 @@ export default function ContactTable() {
         </TableHeader>
         <TableBody>
           {contacts.map((contact) => (
-            <TableRow key={contact.id}>
+            <TableRow key={contact.id} onClick={() => openDetailsPanel(contact.id)}>
               <TableCell className="font-medium">{contact.name}</TableCell>
               <TableCell>{contact.company}</TableCell>
               <TableCell>{contact.role}</TableCell>
